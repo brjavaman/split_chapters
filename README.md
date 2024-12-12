@@ -26,7 +26,11 @@ The chapter file has the same name of the video file, with a .txt extension. It 
 02:00:10 - Title 4
 ```
 
-The chapters need to be in chronological order. The script will remove special characters and accented characters from the titles, and use the title to create a filename for the exported chapter. Any lne with no title will be skipped, so, you could use that to not export parts of the video.
+The chapters need to be in chronological order, and the script will consider the end of a chapter to be the begining of the next one. 
+
+The script will remove special characters and accented characters from the titles, and use the title to create a filename for the exported chapter. 
+
+Any lne with no title will be skipped, so, you could use that to not export parts of the video.
 
 # The script
 The `split_chapters.sh` script will interate over the chapter file and run ffmpeg to export each chapter to the output_chapters directory.
