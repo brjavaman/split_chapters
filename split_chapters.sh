@@ -72,11 +72,11 @@ while IFS= read -r line; do
   echo "==== Parsed Line: '$line'"
   echo "==== Parsed Time: '$TIME' | Normalized Time: '$NORMALIZED_TIME' | Time in Seconds: $TIME_SEC | Title: '$TITLE'"
 
-  # Skip invalid or empty timestamps
-  #if [[ -z "$TITLE" || "$TIME_SEC" -le "$PREV_TIME_SEC" ]]; then
-  #  echo "===== Warning: Skipping invalid or out-of-order line: '$line'"
-  #  continue
-  #fi
+  # Skip invalid or empty timestamps, but allow the first line
+  if [[ -z "$TITLE" || ( "$TIME_SEC" -le "$PREV_TIME_SEC" && "$FIRST_LINE" = false ) ]]; then
+    echo "===== Warning: Skipping invalid or out-of-order line: '$line'"
+    continue
+  fi
 
   # Skip first line for duration calculation
   if [ "$FIRST_LINE" = true ]; then
